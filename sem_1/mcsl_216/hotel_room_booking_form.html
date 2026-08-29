@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hostel Room Booking</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        form {
+            width: 400px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: inline-block;
+            width: 130px;
+            margin-bottom: 15px;
+        }
+
+        input, select {
+            padding: 7px;
+            width: 200px;
+        }
+
+        .payment input {
+            width: auto;
+        }
+
+        button {
+            padding: 8px 20px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Hostel Room Booking Form</h2>
+
+<form id="bookingForm" onsubmit="return validateForm()">
+
+    <label>First Name:</label>
+    <input type="text" id="fname">
+    <br>
+
+    <label>Last Name:</label>
+    <input type="text" id="lname">
+    <br>
+
+    <label>Email:</label>
+    <input type="email" id="email">
+    <br>
+
+    <label>Arrival Date:</label>
+    <input type="date" id="arrival">
+    <br>
+
+    <label>Departure Date:</label>
+    <input type="date" id="departure">
+    <br>
+
+    <label>Country:</label>
+    <select id="country">
+        <option value="">Select</option>
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+        <option value="UK">UK</option>
+        <option value="Australia">Australia</option>
+    </select>
+    <br><br>
+
+    <div class="payment">
+        <label>Payment Mode:</label>
+
+        <input type="radio" name="payment" value="Debit Card">
+        Debit Card
+
+        <input type="radio" name="payment" value="Credit Card">
+        Credit Card
+    </div>
+
+    <br>
+
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+
+</form>
+
+<script>
+function validateForm() {
+
+    let fname = document.getElementById("fname").value.trim();
+    let lname = document.getElementById("lname").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let arrival = document.getElementById("arrival").value;
+    let departure = document.getElementById("departure").value;
+    let country = document.getElementById("country").value;
+
+    let payment = document.querySelector(
+        'input[name="payment"]:checked'
+    );
+
+    if (fname === "" || lname === "" || email === "" ||
+        arrival === "" || departure === "" ||
+        country === "" || payment === null) {
+
+        alert("Please fill all the fields.");
+        return false;
+    }
+
+    if (departure < arrival) {
+        alert("Departure date must be after arrival date.");
+        return false;
+    }
+
+    alert("Booking submitted successfully.");
+    return true;
+}
+</script>
+
+</body>
+</html>
